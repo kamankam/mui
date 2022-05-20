@@ -6,7 +6,7 @@ export default function InputTask() {
 
   return (
     <div className="flex  justify-center">
-      <textarea
+      <input
         //value={task}
         onChange={(e) => setTask(e.target.value)}
         className="bg-pink-100 px-5 py-2 placeholder-pink-400 focus:outline-none  rounded-l-full"
