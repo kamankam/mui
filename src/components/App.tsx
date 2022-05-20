@@ -1,3 +1,9 @@
+import Task from './task/Task'
+
 export default () => {
-  return <div>Learn React</div>
+  return (
+    <div>
+      <Task />
+    </div>
+  )
 }
