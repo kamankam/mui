@@ -21,7 +21,7 @@ export default function BodyTask() {
           <tbody>
             <tr className="odd:bg-pink-100  even:bg-pink-50 text-pink-600">
               <td className="px-2 py-2 text-center">1</td>
-              <td className="px-2 py-2 text-left">Записаться на брови</td>
+              <td className="px-2 py-2 text-left"></td>
               <td className="px-2 py-2 text-left flex gap-2">
                 <button>
                   <svg
