@@ -1,12 +1,9 @@
-import { taskWillBePosted } from './index'
+import { taskWillBePosted, $taskText, $tasks } from './index'
+import { combine, sample } from 'effector'
 
-// const taskWillBePosted = sample({
-//     clock: taskWillBePosted,
-//     source: $taskText,
-//     filter: (twitterText) => !!twitterText,
-//     fn: (twitterText) => ({
-//       text: twitterText,
-//       id: uuidv4(),
-//       timestamp: dayjs().unix(),
-//     }),
-//   })
+// sample({
+//   clock: taskWillBePosted,
+//   source: combine($tasks, $taskText),
+//     fn: ([tasks, new_task]) => [...tasks, new_task],
+//   target: $tasks,
+// })

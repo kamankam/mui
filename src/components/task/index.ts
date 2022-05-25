@@ -1,3 +1,3 @@
-import Task from './Task'
+import Tasks from './Tasks'
 
-export { Task }
+export { Tasks }
