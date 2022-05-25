@@ -1,4 +1,4 @@
-import { taskWillBePosted } from 'components/models/task/index'
+import { taskWillBePosted } from 'models/task/index'
 
 export default function ButtonTask() {
   return (

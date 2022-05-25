@@ -1,4 +1,5 @@
 import App from 'components/App'
+import 'models/init'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'

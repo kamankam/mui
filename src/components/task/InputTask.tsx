@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import { $taskText, setTask } from 'components/models/task'
+import { $taskText, setTask } from 'models/task'
 import ButtonTask from './ButtonTask'
 
 export default function InputTask() {
