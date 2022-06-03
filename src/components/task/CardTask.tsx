@@ -2,6 +2,8 @@ import { Task } from 'models/task/types'
 import DoneIcon from './svg/DoneIcon'
 import TrashIcon from './svg/TrashIcon'
 import CalendarIcon from './svg/CalendarIcon'
+import DoneButton from './DoneButton'
+import { taskWillBeDone } from 'models/task'
 
 interface Props {
   task: Task
@@ -11,9 +13,9 @@ export default function CardTask({ task }: Props) {
   return (
     <tr className="odd:bg-pink-100  even:bg-pink-50 text-pink-600">
       <td className="px-2 py-2 text-center">{id}</td>
-      <td className="px-2 py-2 text-left">{text}</td>
+      <DoneButton task={task} />
       <td className="px-2 py-2 text-left flex gap-2">
-        <button>
+        <button onClick={() => taskWillBeDone(id)}>
           <DoneIcon height={24} width={24} />
         </button>
         <button>

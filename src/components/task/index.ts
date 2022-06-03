@@ -3,4 +3,4 @@ import DoneIcon from './svg/DoneIcon'
 import TrashIcon from './svg/TrashIcon'
 import CalendarIcon from './svg/CalendarIcon'
 
-export { Tasks, DoneIcon, TrashIcon }
+export { Tasks, DoneIcon, TrashIcon, CalendarIcon }
