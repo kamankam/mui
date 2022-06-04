@@ -1,18 +1,27 @@
-import { Task } from 'models/task/types'
 import { combine, sample } from 'effector'
 import { $tasks, $taskText, taskWillBeDone, taskWillBePosted } from './index'
-import { find, identity } from 'lodash'
+import { v4 as uuidv4 } from 'uuid'
 
+//публикуем таск
 sample({
   clock: taskWillBePosted,
   source: combine($tasks, $taskText),
   fn: ([tasks, new_task]) => [
     ...tasks,
-    { text: new_task, id: 'todo: generate id', isDone: false },
+    { text: new_task, id: uuidv4(), isDone: false },
   ],
+
   target: $tasks,
 })
 
+//зануляем поля ввода после публикации
+sample({
+  clock: [taskWillBePosted],
+  fn: () => '',
+  target: $taskText,
+})
+
+//меняем статус isDone на true для зачеркивания таска
 sample({
   clock: taskWillBeDone,
   source: $tasks,
@@ -23,7 +32,7 @@ sample({
       }
     })
     console.log(tasks)
-    return tasks
+    return [...tasks]
   },
 
   target: $tasks,

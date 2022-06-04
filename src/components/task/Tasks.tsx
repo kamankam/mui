@@ -1,9 +1,11 @@
-import { useList } from 'effector-react'
+import { useStore } from 'effector-react'
 import { $tasks } from 'models/task'
 import CardTask from './CardTask'
 
 export default function TaskComponent() {
-  const tasks = useList($tasks, (task) => <CardTask task={task} />)
+  const tasks = useStore($tasks).map((task, index) => (
+    <CardTask task={task} index={index + 1} />
+  ))
 
   return (
     <div className="bg-pink-100 mt-5 p-4 rounded-lg shadow-lg">
@@ -11,7 +13,7 @@ export default function TaskComponent() {
         <table className="w-full">
           <thead className="">
             <tr className="bg-pink-400 text-pink-100 rounded-lg">
-              <th className="text-center rounded-tl-lg py-2">id</th>
+              <th className="text-center rounded-tl-lg py-2">#</th>
               <th className="text-left  py-2 w-full">Detail</th>
               <th className="text-left rounded-tr-lg  ">Action</th>
             </tr>
