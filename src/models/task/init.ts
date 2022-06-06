@@ -1,5 +1,11 @@
 import { combine, sample } from 'effector'
-import { $tasks, $taskText, taskWillBeDone, taskWillBePosted } from './index'
+import {
+  $tasks,
+  $taskText,
+  taskWillBeDone,
+  taskWillBePosted,
+  taskWillBeDeleted,
+} from './index'
 import { v4 as uuidv4 } from 'uuid'
 
 //публикуем таск
@@ -35,5 +41,14 @@ sample({
     return [...tasks]
   },
 
+  target: $tasks,
+})
+
+//удаление таск
+sample({
+  clock: taskWillBeDeleted,
+  source: $tasks,
+  fn: (tasks, postIdToDelete) =>
+    tasks.filter(({ id }) => postIdToDelete !== id),
   target: $tasks,
 })

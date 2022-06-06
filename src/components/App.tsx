@@ -2,6 +2,7 @@ import Tasks from './task/Tasks'
 import InputTask from './task/InputTask'
 import CompleteTask from './task/CompleteTask'
 import HeaderList from './task/HeaderList'
+import Calendar from './task/Calendar'
 
 export default () => {
   return (

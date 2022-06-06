@@ -5,8 +5,11 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@headlessui/react": "^1.6.4",
+    "@heroicons/react": "^1.0.6",
     "@mui/material": "^5.7.0",
     "@types/lodash": "^4.14.182",
+    "date-fns": "^2.28.0",
     "effector": "^22.3.0",
     "effector-react": "^22.0.6",
     "lodash": "^4.17.21",
