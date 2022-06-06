@@ -5,6 +5,7 @@ import Calendar from './Calendar'
 import DoneButton from './DoneButton'
 import { taskWillBeDone, taskWillBeDeleted } from 'models/task'
 import { setCalendarVisible, $isCalendarVisible } from 'models/task/index'
+import CalendarIcon from './svg/CalendarIcon'
 
 interface Props {
   task: Task
@@ -27,8 +28,9 @@ export default function CardTask({ task, index }: Props) {
         <button onClick={() => taskWillBeDeleted(id)}>
           <TrashIcon height={24} width={24} />
         </button>
-
-        <Calendar />
+        <button onClick={handleOnCalendarClick}>
+          <CalendarIcon height={24} width={24} />
+        </button>
       </td>
     </tr>
   )

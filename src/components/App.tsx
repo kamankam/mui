@@ -12,6 +12,7 @@ export default () => {
         <InputTask />
         <CompleteTask />
         <Tasks />
+        <Calendar />
       </div>
     </div>
   )

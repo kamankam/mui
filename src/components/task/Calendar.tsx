@@ -5,15 +5,15 @@ import CalendarIcon from './svg/CalendarIcon'
 export default function Calendar() {
   const isCalendarVisible = useStore($isCalendarVisible)
 
-  const handleOnCalendarClick = () => {
-    setCalendarVisible(true)
-  }
+  // const handleOnCalendarClick = () => {
+  //   setCalendarVisible(true)
+  // }
 
   return (
     <>
-      <button onClick={handleOnCalendarClick}>
+      {/* <button onClick={handleOnCalendarClick}>
         <CalendarIcon height={24} width={24} />
-      </button>
+      </button> */}
       {isCalendarVisible && (
         <div className="flex items-center justify-center py-8 px-4">
           <div className="max-w-sm w-full shadow-lg">
