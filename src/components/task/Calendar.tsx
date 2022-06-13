@@ -5,19 +5,12 @@ import CalendarIcon from './svg/CalendarIcon'
 export default function Calendar() {
   const isCalendarVisible = useStore($isCalendarVisible)
 
-  // const handleOnCalendarClick = () => {
-  //   setCalendarVisible(true)
-  // }
-
   return (
     <>
-      {/* <button onClick={handleOnCalendarClick}>
-        <CalendarIcon height={24} width={24} />
-      </button> */}
       {isCalendarVisible && (
         <div className="flex items-center justify-center py-8 px-4">
           <div className="max-w-sm w-full shadow-lg">
-            <div className="md:p-8 p-5 dark:bg-gray-800 bg-white rounded-t">
+            <div className="md:p-8 p-5 dark:bg-gray-800 bg-pink-100 rounded-t">
               <div className="px-4 flex items-center justify-between">
                 <span className="focus:outline-none  text-base font-bold dark:text-gray-100 text-gray-800">
                   October 2020
@@ -45,7 +38,7 @@ export default function Calendar() {
                   </button>
                   <button
                     aria-label="calendar forward"
-                    className="focus:text-gray-400 hover:text-gray-400 ml-3 text-gray-800 dark:text-gray-100"
+                    className="focus:text-gray-400 hover:text-gray-400 ml-3 text-pink-400 dark:text-gray-100"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

@@ -1,11 +1,11 @@
 import { Task } from 'models/task/types'
 import DoneIcon from './svg/DoneIcon'
 import TrashIcon from './svg/TrashIcon'
-import Calendar from './Calendar'
 import DoneButton from './DoneButton'
 import { taskWillBeDone, taskWillBeDeleted } from 'models/task'
-import { setCalendarVisible, $isCalendarVisible } from 'models/task/index'
+import { setCalendarVisible } from 'models/task/index'
 import CalendarIcon from './svg/CalendarIcon'
+import UpdateIcon from './svg/UpdateIcon'
 
 interface Props {
   task: Task
@@ -25,11 +25,14 @@ export default function CardTask({ task, index }: Props) {
         <button onClick={() => taskWillBeDone(id)}>
           <DoneIcon height={24} width={24} />
         </button>
-        <button onClick={() => taskWillBeDeleted(id)}>
-          <TrashIcon height={24} width={24} />
-        </button>
         <button onClick={handleOnCalendarClick}>
           <CalendarIcon height={24} width={24} />
+        </button>
+        <button>
+          <UpdateIcon height={24} width={24} />
+        </button>
+        <button onClick={() => taskWillBeDeleted(id)}>
+          <TrashIcon height={24} width={24} />
         </button>
       </td>
     </tr>
