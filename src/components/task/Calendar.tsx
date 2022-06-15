@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import { setCalendarVisible, $isCalendarVisible } from 'models/task/index'
+import { $isCalendarVisible } from 'models/task/index'
 import CalendarIcon from './svg/CalendarIcon'
 
 export default function Calendar() {

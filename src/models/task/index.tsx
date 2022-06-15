@@ -1,5 +1,6 @@
 import { createEvent, createStore, restore } from 'effector'
 import { Task } from './types'
+import { createGate } from 'effector-react'
 
 //add tasks
 export const $tasks = createStore<Task[]>([])
@@ -12,9 +13,16 @@ export const taskWillBeDeleted = createEvent<string>()
 export const taskWillBeDone = createEvent<string>()
 
 //Calendar
-export const setCalendarVisible = createEvent<boolean>()
-export const $isCalendarVisible = restore(setCalendarVisible, false)
+export const toggleCalendarVisible = createEvent()
+export const $isCalendarVisible = createStore(false)
+
+// для обновления поста, обработчик на кнопку "+"
+export const setTaskText = createEvent<string>()
 
 //update tasks
-export const taskWillBeUpdate = createEvent<Task>()
-//export const $updatedPost = createStore<Task>()
+
+export const taskUpdate = createEvent<Task>()
+export const $updatedTask = createStore<Task | null>(null)
+
+// Gate
+export const FormGate = createGate<React.RefObject<HTMLInputElement>>()

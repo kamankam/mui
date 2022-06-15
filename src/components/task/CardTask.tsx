@@ -1,10 +1,15 @@
+import {
+  taskUpdate,
+  taskWillBeDeleted,
+  taskWillBeDone,
+  toggleCalendarVisible,
+} from 'models/task'
+
 import { Task } from 'models/task/types'
+import DoneButton from './DoneButton'
+import CalendarIcon from './svg/CalendarIcon'
 import DoneIcon from './svg/DoneIcon'
 import TrashIcon from './svg/TrashIcon'
-import DoneButton from './DoneButton'
-import { taskWillBeDone, taskWillBeDeleted } from 'models/task'
-import { setCalendarVisible } from 'models/task/index'
-import CalendarIcon from './svg/CalendarIcon'
 import UpdateIcon from './svg/UpdateIcon'
 
 interface Props {
@@ -14,9 +19,6 @@ interface Props {
 export default function CardTask({ task, index }: Props) {
   const { text, id } = task
 
-  const handleOnCalendarClick = () => {
-    setCalendarVisible(true)
-  }
   return (
     <tr className="odd:bg-pink-100  even:bg-pink-50 text-pink-600">
       <td className="px-2 py-2 text-center">{index}</td>
@@ -25,10 +27,10 @@ export default function CardTask({ task, index }: Props) {
         <button onClick={() => taskWillBeDone(id)}>
           <DoneIcon height={24} width={24} />
         </button>
-        <button onClick={handleOnCalendarClick}>
+        <button onClick={() => toggleCalendarVisible()}>
           <CalendarIcon height={24} width={24} />
         </button>
-        <button>
+        <button onClick={() => taskUpdate(task)}>
           <UpdateIcon height={24} width={24} />
         </button>
         <button onClick={() => taskWillBeDeleted(id)}>
