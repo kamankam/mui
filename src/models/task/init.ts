@@ -1,5 +1,6 @@
 import { $isCalendarVisible, toggleCalendarVisible } from 'models/task/index'
 import { combine, sample } from 'effector'
+import { chain } from 'lodash'
 import {
   $tasks,
   $taskText,
@@ -8,11 +9,13 @@ import {
   taskWillBeDeleted,
   taskUpdate,
   $updatedTask,
+  $taskTextUpdate,
+  taskWillBeUpdate,
 } from './index'
 import { v4 as uuidv4 } from 'uuid'
 import { FormGate } from '.'
 
-//публикуем таск
+//публикуем таск и фильтруем пустые строки
 sample({
   clock: taskWillBePosted,
   source: combine($tasks, $taskText),
@@ -48,13 +51,6 @@ sample({
   target: $tasks,
 })
 
-// sample({
-//   clock: taskWillBePosted,
-//   source: $taskText,
-//   filter: (taskText) => taskText !== ' ',
-//   target: $taskText,
-// })
-
 //удаление таск
 sample({
   clock: taskWillBeDeleted,
@@ -65,24 +61,58 @@ sample({
 })
 
 // Добавление текста из поле ввода, связь с ref
+// sample({
+//   clock: $updatedTask,
+//   source: FormGate.state,
+//   filter: (updatedTask) => !!updatedTask,
+//   fn: (textareaRef) => {
+//     textareaRef.current?.focus()
+//   },
+// })
+
+// Добавление текста из поле ввода, связь с ref
 sample({
   clock: $updatedTask,
   source: FormGate.state,
   filter: (updatedTask) => !!updatedTask,
-  fn: (textareaRef) => {
-    textareaRef.current?.focus()
+  fn: (textareaUpdateRef) => {
+    textareaUpdateRef.current?.focus()
   },
 })
 
-//обновление поста
-
+//извлекаем таск из опубликованного обратно в область инпута в стор $taskTextUpdate
 sample({
   clock: taskUpdate,
   fn: (postToTextarea) => {
     console.log(postToTextarea.text)
     return postToTextarea.text
   },
-  target: $taskText,
+  target: $taskTextUpdate,
+})
+
+// Запоминаем пост для обновления
+sample({
+  clock: taskUpdate,
+  target: $updatedTask,
+})
+
+//логика по обновлению поста
+sample({
+  clock: taskWillBeUpdate,
+  source: combine($updatedTask, $taskTextUpdate, $tasks),
+  // tasks -опубликованные таски, taskTextUpdate - то что в области инпута, updateTask-пост, который хотим обновить
+  fn: ([updateTask, taskTextUpdate, tasks]) => {
+    //записываем в переменную Id таска, который хотим отредактировать
+    // @ts-ignore
+    const taskId = updateTask.id
+    const updatedTask = chain(tasks)
+      .filter((task) => task.id !== taskId) // выбираем подходящий пост по id
+      .concat([{ text: taskTextUpdate, id: taskId, isDone: false }]) // add update post
+      .value() // has side effect (changing post order)??? НЕ ПОМНЮ ЧТО ЭТО
+
+    return updatedTask
+  },
+  target: $tasks,
 })
 
 // todo: moveto calendar model
