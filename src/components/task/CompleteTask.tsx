@@ -1,4 +1,12 @@
-export default function CompleteTask() {
+import { Task } from 'models/task/types'
+
+interface Props {
+  task: Task
+}
+
+export default function CompleteTask({ task }: Props) {
+  const { text, id, isDone } = task
+
   return (
     <div>
       <h1 className="text-lg font-bold mb-0 text-gray-800 leading-none">

@@ -11,6 +11,7 @@ import {
   $updatedTask,
   $taskTextUpdate,
   taskWillBeUpdate,
+  $taskPendingUpdate,
 } from './index'
 import { v4 as uuidv4 } from 'uuid'
 import { FormGate } from '.'
@@ -94,6 +95,14 @@ sample({
 sample({
   clock: taskUpdate,
   target: $updatedTask,
+})
+
+//task pending managment
+
+sample({
+  clock: taskUpdate,
+  fn: (task) => !!task,
+  target: $taskPendingUpdate,
 })
 
 //логика по обновлению поста

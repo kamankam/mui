@@ -10,7 +10,7 @@ export default () => {
       <div className="w-full mx-3 max-w-2xl">
         <HeaderList />
         <InputTask />
-        <CompleteTask />
+        {/* <CompleteTask /> */}
         <Tasks />
         <Calendar />
       </div>

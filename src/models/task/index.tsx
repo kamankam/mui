@@ -33,3 +33,6 @@ export const FormGate = createGate<React.RefObject<HTMLInputElement>>()
 
 // Gate for update text in input
 export const FormGateUpdate = createGate<React.RefObject<HTMLInputElement>>()
+
+//merge inputs logic
+export const $taskPendingUpdate = createStore<boolean>(false)
